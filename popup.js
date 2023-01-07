@@ -15,7 +15,9 @@ document.getElementById('copy-post').addEventListener('click', function () {
     chrome.tabs.executeScript({
         code: 'document.querySelector(".postarea").innerHTML'
     }, function (results) {
-        copy(results[0]);
+       let  mytext = results[0].replace(/<font style="vertical-align: inherit;">/g, '').replace(/<\/font>/g, '');
+
+        copy(mytext);
     });
     document.getElementById('copy-post').innerHTML = 'Copied'
 });
@@ -101,3 +103,23 @@ function copyUrl(url) {
 //   var container = document.querySelector('.postarea');
 // var elementsHTML = container.innerHTML;
 // console.log(elementsHTML)
+
+
+
+
+
+//   document.addEventListener('DOMContentLoaded', function() {
+//     var button = document.getElementById('ctab');
+//     button.addEventListener('click', function() {
+//       // execute the code to modify the first tab
+//       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//         var firstTabId = tabs[0].id;
+//         var code = `
+//           var container = document.querySelector('input.whsOnd.zHQkBf');
+//           container.textContent = 'mijan';
+//         `;
+//         chrome.tabs.executeScript(firstTabId, {code: code});
+//       });
+    
+//     });
+//   });
