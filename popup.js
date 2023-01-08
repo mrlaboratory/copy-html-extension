@@ -18,9 +18,6 @@ document.getElementById('copy-post').addEventListener('click', function () {
     chrome.tabs.executeScript({
         code: 'document.querySelector(".postarea").innerHTML'
     }, function (results) {
-
-       let  mytext = results[0].replace(/<font style="vertical-align: inherit;">/g, '').replace(/<\/font>/g, '').replace(/www.neotericit.com/g, 'en.neotericit.com');
-
         copy(results[0]);
     });
     
