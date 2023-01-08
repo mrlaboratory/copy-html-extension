@@ -3,7 +3,7 @@ document.getElementById('copy-url').addEventListener('click', function () {
     chrome.tabs.executeScript({
         code: 'window.location.href'
     }, function (results) {
-        copyUrl(results[0]);
+        copy(copyUrl(results[0]));
     });
     document.getElementById('copy-url').innerHTML = 'Copied'
 });
@@ -13,12 +13,17 @@ document.getElementById('copy-url').addEventListener('click', function () {
 // copy post code
 document.getElementById('copy-post').addEventListener('click', function () {
     chrome.tabs.executeScript({
+        code: '(' + removeAds + ')();'
+      });
+    chrome.tabs.executeScript({
         code: 'document.querySelector(".postarea").innerHTML'
     }, function (results) {
-       let  mytext = results[0].replace(/<font style="vertical-align: inherit;">/g, '').replace(/<\/font>/g, '');
 
-        copy(mytext);
+       let  mytext = results[0].replace(/<font style="vertical-align: inherit;">/g, '').replace(/<\/font>/g, '').replace(/www.neotericit.com/g, 'en.neotericit.com');
+
+        copy(results[0]);
     });
+    
     document.getElementById('copy-post').innerHTML = 'Copied'
 });
 
@@ -61,12 +66,57 @@ function copy(text) {
 
 
 
-function copyUrl(url) {
+const copyUrl = (url) => {
     var parts = url.split("/");
     var lastPart = parts[parts.length - 1];
     var productName = lastPart.split(".")[0];
-    copy(productName);
+    return productName
 }
+
+
+
+// const shorturl= (url)=> {
+//     const API_KEY = "7e7abf0fbae1ed4c444ca7136d29b8d758b81";
+//     return fetch(`https://cutt.ly/api/api.php?key=${API_KEY}&short=${url}`)
+//       .then(response => response.json())
+//       .then(data => {
+//         return data.url.shortLink;
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
+//   }
+//   async function getShortUrl() {
+//     const mijan = await shorturl(murl);
+//   }
+//   const shUrl = await getShortUrl();
+// for remove google ads 
+// background.js
+
+function removeAds() {
+    const elements = document.querySelectorAll('.postarea .widget, .adsbygoogle, .google-auto-placed');
+    elements.forEach(element => element.remove());
+    const contain = document.querySelector('.postarea');
+    const text = contain.innerHTML;
+    const newText = text.replace(/<font style="vertical-align: inherit;">/g, '')
+                       .replace(/<\/font>/g, '')
+                       .replace(/www.neotericit.com/g, 'en.neotericit.com');
+                       contain.innerHTML = newText;
+
+    const murl = window.location.href
+    var parts = murl.split("/");
+    var lastPart = parts[parts.length - 1];
+    var productName = lastPart.split(".")[0];
+    const str = "<p>Thanks for read the post. You can also read the article in bangla - <a target='_blank' href='"+murl+"'>"+productName+"</a></p>"
+const container = document.querySelector('.postarea');
+container.innerHTML += str;
+
+
+
+
+  }
+  
+
 
 
 
