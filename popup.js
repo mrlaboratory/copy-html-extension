@@ -1,3 +1,66 @@
+
+
+
+document.getElementById('add-img-title').addEventListener('click', function () {
+    chrome.tabs.executeScript({
+        code: '(' + addImgTitle + ')();'
+      });
+      this.innerHTML = 'Copied'
+ 
+});
+function addImgTitle() {
+   
+    if (window.location.href === "https://www.blogger.com/blog/post/edit/8607048692374604065/5975976895684574881") {
+        const mytitle = document.querySelector('input.whsOnd.zHQkBf').value;
+        const iframe = document.querySelector(".ZW3ZFc.editable");
+    
+        const images = iframe.contentDocument.querySelectorAll("img");
+        const attributesToRemove = ["data-original-width", "data-original-height", "border", "height", "width"];
+        for (const image of images) {
+            image.setAttribute("alt", mytitle);
+            image.setAttribute("title", mytitle);
+            for (let attribute of attributesToRemove) {
+                image.removeAttribute(attribute);
+            }
+        }
+        const editable = iframe.contentDocument.querySelector(".editable");
+    
+        const textarea = document.createElement("textarea");
+        
+    textarea.value = editable.innerHTML;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    console.log("Content copied to clipboard.");
+    
+} else {
+    this.innerHTML = 'Not Worked'
+    console.log('Code not worked for url')
+    alert('Code not worked for url')
+}
+
+
+
+
+}
+
+
+
+// let mtitle = "test title "
+// const iframe = document.querySelector(".ZW3ZFc.editable");
+// const images = iframe.contentDocument.querySelectorAll("img");
+// for (const image of images) {
+//       image.setAttribute("alt", mtitle);
+//     image.setAttribute("title", mtitle);
+// image.removeAttribute('data-original-width');
+// image.removeAttribute('data-original-height');
+// image.removeAttribute('border');
+// image.removeAttribute('height');
+// image.removeAttribute('width');
+// }
+
+
 // copy url 
 document.getElementById('copy-url').addEventListener('click', function () {
     chrome.tabs.executeScript({
@@ -5,7 +68,7 @@ document.getElementById('copy-url').addEventListener('click', function () {
     }, function (results) {
         copy(copyUrl(results[0]));
     });
-    document.getElementById('copy-url').innerHTML = 'Copied'
+    this.innerHTML = 'Copied'
 });
 
 
@@ -21,7 +84,7 @@ document.getElementById('copy-post').addEventListener('click', function () {
         copy(results[0]);
     });
     
-    document.getElementById('copy-post').innerHTML = 'Copied'
+    this.innerHTML = 'Copied'
 });
 
 
@@ -32,7 +95,7 @@ document.getElementById('copy-des').addEventListener('click', function () {
     }, function (results) {
         copy(results[0]);
     });
-    document.getElementById('copy-des').innerHTML = 'Copied'
+    this.innerHTML = 'Copied'
 });
 
 
@@ -45,7 +108,7 @@ document.getElementById('copy-title').addEventListener('click', function () {
     }, function (results) {
         copy(results[0]);
     });
-    document.getElementById('copy-title').innerHTML = 'Copied'
+    this.innerHTML = 'Copied'
 });
 
 
@@ -60,6 +123,7 @@ function copy(text) {
     document.execCommand("copy");
     document.body.removeChild(dummy);
 }
+
 
 
 
@@ -115,6 +179,8 @@ container.innerHTML += str;
   
 
 
+
+// Add an event listener to the button
 
 
 
