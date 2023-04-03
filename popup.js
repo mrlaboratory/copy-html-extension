@@ -19,7 +19,15 @@ function addImgTitle() {
         for (const image of images) {
             i++
             
+
+            let anchorSrc = JSON.parse(image.parentElement?.getAttribute('data-original-attrs'))
+            
+            anchorSrc = anchorSrc? anchorSrc['data-original-href'] : ''
+            if(anchorSrc){
+                image.setAttribute("src",anchorSrc)
+            }
             // image.setAttribute("src",JSON.parse(image.parentElement.getAttribute('data-original-attrs'))['data-original-href']);
+            
             image.setAttribute("alt", mytitle+" - Image no "+ i);
             image.setAttribute("title", mytitle+" - Image no "+ i);
             image.setAttribute("loading","lazy");
