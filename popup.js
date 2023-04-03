@@ -5,7 +5,7 @@ document.getElementById('add-img-title').addEventListener('click', function () {
     chrome.tabs.executeScript({
         code: '(' + addImgTitle + ')();'
       });
-      this.innerHTML = 'Copied'
+      this.innerHTML = 'Added and Copied'
  
 });
 function addImgTitle() {
@@ -13,12 +13,16 @@ function addImgTitle() {
     if (window.location.href === "https://www.blogger.com/blog/post/edit/8607048692374604065/5975976895684574881") {
         const mytitle = document.querySelector('input.whsOnd.zHQkBf').value;
         const iframe = document.querySelector(".ZW3ZFc.editable");
-    
         const images = iframe.contentDocument.querySelectorAll("img");
-        const attributesToRemove = ["data-original-width", "data-original-height", "border", "height", "width"];
+        const attributesToRemove = [ "border", "height", "width"];
+        let i = 0 ;
         for (const image of images) {
-            image.setAttribute("alt", mytitle);
-            image.setAttribute("title", mytitle);
+            i++
+            
+            // image.setAttribute("src",JSON.parse(image.parentElement.getAttribute('data-original-attrs'))['data-original-href']);
+            image.setAttribute("alt", mytitle+" - Image no "+ i);
+            image.setAttribute("title", mytitle+" - Image no "+ i);
+            image.setAttribute("loading","lazy");
             for (let attribute of attributesToRemove) {
                 image.removeAttribute(attribute);
             }
@@ -40,7 +44,7 @@ function addImgTitle() {
     alert('Code not worked for url')
 }
 
-
+document.querySelector('input.whsOnd.zHQkBf').value="Deshboard";
 
 
 }

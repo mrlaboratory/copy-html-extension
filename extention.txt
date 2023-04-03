@@ -1,0 +1,62 @@
+title selector = document.querySelector('input.whsOnd.zHQkBf').value= 'mijan'
+
+const iframe = document.querySelector("iframe.editable");
+const editable = iframe.contentDocument.querySelector(".editable");
+editable.innerHTML = "<p>Your new contents here</p>";
+
+const iframe = document.querySelector(".ZW3ZFc.editable");
+const editable = iframe.contentDocument.querySelector(".editable");
+editable.innerHTML = "<p>Your new contents here</p><h3>mijan</h3>";
+
+
+
+let myimage = document.querySelector(".container img")
+  myimage.setAttribute("title", "some title"); 
+
+
+
+i open chrome browser and i opened two tab
+i have on tab1 <input class="input1" type="text"> and
+i have on tab2 <input class="input2" type="text">
+i want make chrome extention with button name copyer 
+when click copyer button then the extention copy code from tab1 and past on tab2 
+i am always click from tab2
+
+
+
+
+
+
+i have on tab1 <input class="input1" type="text"> 
+make chrome extention wehn click the button then the inputr box set text 'i am mijan '
+
+
+var img = document.body.getElementsByTagName("img");
+var i = 0;
+while (i < img.length) {
+    image.setAttribute("alt", mtitle);
+    image.setAttribute("title", mtitle);
+image.removeAttribute('data-original-width');
+image.removeAttribute('data-original-height');
+img[i].removeAttribute('border');
+    i++;
+}
+
+
+let mtitle = "test title "
+const iframe = document.querySelector(".ZW3ZFc.editable");
+const images = iframe.contentDocument.querySelectorAll("img");
+for (const image of images) {
+      image.setAttribute("alt", mtitle);
+    image.setAttribute("title", mtitle);
+image.removeAttribute('data-original-width');
+image.removeAttribute('data-original-height');
+image.removeAttribute('border');
+image.removeAttribute('height');
+image.removeAttribute('width');
+}
+
+
+const iframe = document.querySelector(".ZW3ZFc.editable");
+const editable = iframe.contentDocument.querySelector(".editable");
+editable.innerHTML = "<p>Your new contents here</p><h3>mijan</h3>";
