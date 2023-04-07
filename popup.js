@@ -24,6 +24,9 @@ function addImgTitle() {
             
             anchorSrc = anchorSrc? anchorSrc['data-original-href'] : ''
             if(anchorSrc){
+                const postThumbnail = anchorSrc
+const convertedPostThumbnail = postThumbnail ? postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/") : '';
+console.log(convertedPostThumbnail)
                 image.setAttribute("src",anchorSrc)
             }
             // image.setAttribute("src",JSON.parse(image.parentElement.getAttribute('data-original-attrs'))['data-original-href']);
