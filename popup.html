@@ -8,6 +8,9 @@
 </head>
 <body>
   <style>
+    body{
+      border-radius: 10px;
+    }
     button {
       height: 30px;
       width: 100%;
@@ -19,12 +22,16 @@
       cursor: pointer;
       margin-bottom: 10px;
     }
+    button:hover{
+      background-color: #37853a;
+    }
 .special{
 background-color: #7b21a8;
 }
     .container {
   width: 400px;
   height: 400px;
+  border-radius: 8px;
 }
 .images{
 width: 100px;
@@ -36,18 +43,35 @@ text-align: center;
 }
 a{text-decoration: none;}
 button a{color: white;}
+.image-div{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.logo-image{
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px solid #4caf50;;
+}
   </style>
-</head>
-<body>
-<div class="container">
+</head >
+<body >
+<div class="container ">
   <button id="copy-url">Copy Post url Title</button>
   <button id="copy-post">Copy Post area</button>
   <button id="copy-des">Copy Post Description</button>
-  <button id="copy-title">Copy Post Title</button>
-  <button id="add-img-title"  class="special">Add Image Title and Alt</button>
+  <button  id="copy-title">Copy Post Title</button>
+  <button id="add-img-title"  class="special">Add Image Title and Alt And Copy </button>
+
  <button><a href="https://www.blogger.com/blog/post/edit/8607048692374604065/5975976895684574881">Dashboard</a></button>
+
+ <button id="img-seo">ALL Image SEO</button>
   <h2>Extention only for <a href="https://www.neotericit.com">NeotericIt.com</a></h2>
- 
+ <div class="image-div">
+  <img class="logo-image" src="logo.png" alt="">
+ </div>
 </div>
 
   <script src="popup.js"></script>

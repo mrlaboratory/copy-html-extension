@@ -8,6 +8,13 @@ document.getElementById('add-img-title').addEventListener('click', function () {
       this.innerHTML = 'Added and Copied'
  
 });
+document.getElementById('img-seo').addEventListener('click', function () {
+    chrome.tabs.executeScript({
+        code: '(' + addImageSEO + ')();'
+      });
+      this.innerHTML = 'Image SEO Complate'
+ 
+});
 function addImgTitle() {
    
     if (window.location.href === "https://www.blogger.com/blog/post/edit/8607048692374604065/5975976895684574881") {
@@ -18,18 +25,10 @@ function addImgTitle() {
         let i = 0 ;
         for (const image of images) {
             i++
-            
-
-            let anchorSrc = JSON.parse(image.parentElement?.getAttribute('data-original-attrs'))
-            
-            anchorSrc = anchorSrc? anchorSrc['data-original-href'] : ''
-            if(anchorSrc){
-                const postThumbnail = anchorSrc
-const convertedPostThumbnail = postThumbnail ? postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/") : '';
-console.log(convertedPostThumbnail)
-                image.setAttribute("src",anchorSrc)
-            }
-            // image.setAttribute("src",JSON.parse(image.parentElement.getAttribute('data-original-attrs'))['data-original-href']);
+          
+            const postThumbnail = image.src
+            const originialPostImg = postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/")
+                            image.setAttribute("src",originialPostImg)
             
             image.setAttribute("alt", mytitle+" - Image no "+ i);
             image.setAttribute("title", mytitle+" - Image no "+ i);
@@ -56,6 +55,48 @@ console.log(convertedPostThumbnail)
 }
 
 document.querySelector('input.whsOnd.zHQkBf').value="Deshboard";
+
+
+}
+
+
+function addImageSEO() {
+        const iframe = document.querySelector(".ZW3ZFc.editable");
+        const images = iframe.contentDocument.querySelectorAll("img");
+        const attributesToRemove = [ "border", "height", "width"];
+        let i = 0 ;
+        for (const image of images) {
+            i++
+            if(i==1){
+                image.setAttribute("loading","eager");
+            }else{
+                image.setAttribute("loading","lazy");
+                image.setAttribute("class","post-img");
+            }    
+            const postThumbnail = image.src
+            const originialPostImg = postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/")
+                            image.setAttribute("src",originialPostImg)
+
+            const imgFiger = document.createElement('figure');
+            imgFiger.setAttribute("class","neotericit-post-image");
+            imgFiger.innerHTML = image.outerHTML;
+            image.parentElement.parentElement.replaceWith(imgFiger);
+
+            for (let attribute of attributesToRemove) {
+                image.removeAttribute(attribute);
+            }
+        }
+        const editable = iframe.contentDocument.querySelector(".editable");
+    
+        const textarea = document.createElement("textarea");
+        
+    textarea.value = editable.innerHTML;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+    console.log("Content copied with SEO images");
+    
 
 
 }
