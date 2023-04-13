@@ -76,15 +76,14 @@ function addImageSEO() {
             const postThumbnail = image.src
             const originialPostImg = postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/")
                             image.setAttribute("src",originialPostImg)
-                            
-            const newdiv = document.createElement('div');
-            newdiv.setAttribute("class","image-container");
+
+            const newDiv = document.createElement('div');
+            newDiv.setAttribute("class","image-container");
             const imgFiger = document.createElement('figure');
-            
             imgFiger.setAttribute("class","neotericit-post-image");
             imgFiger.innerHTML = image.outerHTML;
-            newdiv.innerHTML = imgFiger.outerHTML
-            image.parentElement.parentElement.replaceWith(newdiv);
+            newDiv.innerHTML = imgFiger.outerHTML;
+            image.parentElement.parentElement.replaceWith(newDiv);
 
             for (let attribute of attributesToRemove) {
                 image.removeAttribute(attribute);
