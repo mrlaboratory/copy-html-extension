@@ -17,7 +17,7 @@ document.getElementById('img-seo').addEventListener('click', function () {
 });
 function addImgTitle() {
    
-    if (window.location.href === "https://www.blogger.com/blog/post/edit/8607048692374604065/5975976895684574881") {
+    if (window.location.href === "https://www.blogger.com/blog/post/edit/8607048692374604065/8828349784450292558") {
         const mytitle = document.querySelector('input.whsOnd.zHQkBf').value;
         const iframe = document.querySelector(".ZW3ZFc.editable");
         const images = iframe.contentDocument.querySelectorAll("img");
@@ -76,11 +76,15 @@ function addImageSEO() {
             const postThumbnail = image.src
             const originialPostImg = postThumbnail.split("/").map((e, i) => i === postThumbnail.split("/").length-2 ? "s16000" : e).join("/")
                             image.setAttribute("src",originialPostImg)
-
+                            
+            const newdiv = document.createElement('div');
+            newdiv.setAttribute("class","image-container");
             const imgFiger = document.createElement('figure');
+            
             imgFiger.setAttribute("class","neotericit-post-image");
             imgFiger.innerHTML = image.outerHTML;
-            image.parentElement.parentElement.replaceWith(imgFiger);
+            newdiv.innerHTML = imgFiger.outerHTML
+            image.parentElement.parentElement.replaceWith(newdiv);
 
             for (let attribute of attributesToRemove) {
                 image.removeAttribute(attribute);
@@ -292,3 +296,13 @@ container.innerHTML += str;
     
 //     });
 //   });
+
+// function hideElements() {
+//     var elements = document.getElementsByClassName("CwaK9");
+//     for(var i=0; i<elements.length; i++) {
+//       elements[i].style.display = "none";
+//     }
+//   }
+  
+//   hideElements();
+  
